@@ -20,7 +20,7 @@ const { NotImplementedError } = require('../extensions/index.js');
 function countCats(matrix) {
   // throw new NotImplementedError('Not implemented');
   // remove line with error and write your code here
-  // /['\^\^\']/ 
+  // let cat = /^\^{2}/ig - не работает если 2 кота сидят рядом.
  
   let cats = 0;
   
