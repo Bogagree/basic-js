@@ -16,10 +16,39 @@ const { NotImplementedError } = require('../lib');
  *
  */
 
-function repeater(/* str, options */) {
-  // Remove line below and write your code here
-  throw new NotImplementedError('Not implemented');
+// проходит только базовый кейс
+// function repeater(str, options) {
+//   const {repeatTimes,separator, addition,additionRepeatTimes, additionSeparator } = options
+//   const subStr = `${addition}${additionSeparator}`
+//     .repeat(additionRepeatTimes)
+//     .slice(0, -(additionSeparator.length))
+//
+//   return `${str}${subStr}${separator}`
+//     .repeat(repeatTimes)
+//     .slice(0, -(separator.length))
+// }
+
+function repeatJoin(part, times, separator) {
+  return Array(times).fill(String(part)).join(String(separator));
 }
+
+// дефолтные значения выводятся из тестов extended-repeater.test.js
+function repeater(str, options = {}) {
+  const {
+    repeatTimes = 1,
+    separator = '+',
+    addition = '',
+    additionRepeatTimes = 1,
+    additionSeparator = '|',
+  } = options;
+
+  const additionPart = repeatJoin(addition, additionRepeatTimes, additionSeparator);
+
+  return repeatJoin(String(str) + additionPart, repeatTimes, separator);
+}
+
+console.log('repeater',repeater('STRING', { repeatTimes: 3, separator: '**',
+  addition: 'PLUS', additionRepeatTimes: 3, additionSeparator: '00' }))
 
 module.exports = {
   repeater
